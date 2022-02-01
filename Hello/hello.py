@@ -1,2 +1,5 @@
 print("This is just a test for us to know the thing works")
 print("Again!!!!!!")
+print("Hello Spain")
+print("This sunday")
+print("Football match")
