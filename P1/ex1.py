@@ -1,4 +1,6 @@
 from Seq1 import Seq
 
-s1 = ("ACTGA")
-print(len(s1))
+s = Seq1.Seq()
+s.seq_read_fasta("FRAT1")
+print(s)
+print(s.len())
