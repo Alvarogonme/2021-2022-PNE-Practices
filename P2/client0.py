@@ -1,5 +1,3 @@
-import socket
-
 class Client():
 
     def __init__(self, IP, PORT):
@@ -13,6 +11,8 @@ class Client():
         return "Connection to SERVER at: " + self.ip + ", PORT: " + str(self.port)
 
     def talk(self, msg):
+        import socket
+
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         s.connect((self.ip, self.port))
