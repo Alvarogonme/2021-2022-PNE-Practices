@@ -31,15 +31,6 @@ class Seq:
             except FileNotFoundError:
                 print("File was not found. Try again.")
 
-    def validate_sequence(self):
-        valid = True
-        i = 0
-        while i < len(self.strbases):
-            c = self.strbases[i]
-            if c != "A" and c != "C" and c != "G" and c != "T":
-                valid = False
-            i += 1
-        return valid
 
     def seq_read_fasta(self, filename):
         from pathlib import Path
