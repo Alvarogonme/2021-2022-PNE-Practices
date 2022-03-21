@@ -7,7 +7,6 @@ print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 
 IP = "127.0.0.1"
 PORT = 20500
-
 c = Client(IP, PORT)
 print(c)
 

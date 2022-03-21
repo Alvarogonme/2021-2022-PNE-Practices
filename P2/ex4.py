@@ -7,28 +7,23 @@ EXERCISE = 4
 
 print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 
-# -- Parameters of the server to talk to
 IP = "127.0.0.1"
 PORT = 20500
-# -- Print the IP and PORTs
 c = Client(IP, PORT)
 print(c)
 
+seq = "U5.txt"
+seq_1 = "ADA.txt"
+seq_2 = "FRAT1.txt"
 
-seq = "FRAT1.txt"
-seq1 = "ADA.txt"
-seq2 = "FXN.txt"
-
-
-
-sequences = [seq, seq1, seq2]
-for r in sequences:
+list_sequences = [seq, seq_1, seq_2]
+for b in list_sequences:
     s = Seq()
-    s.read_fasta2(r)
-    print(f"Sending {colorama.Fore.BLUE + r } to the server..." + colorama.Fore.RESET)
-    response = c.talk(f"Sending {r} gene to server" + colorama.Fore.RESET)
-    print(f"Response: {colorama.Fore.YELLOW + response + colorama.Fore.RESET}")
+    s.seq_read_fasta(b)
+    print(f"To server: {colorama.Fore.BLUE + b} gene to the server..." + colorama.Fore.RESET)
+    response = c.talk(f"Sending {b} gene to server" + colorama.Fore.RESET)
+    print(f"From server: \n{colorama.Fore.YELLOW + response + colorama.Fore.RESET}")
 
-    print(f"Sending {colorama.Fore.BLUE + str(s) } to the server..." + colorama.Fore.RESET)
+    print(f"To server {colorama.Fore.BLUE + str(s)} gene to the server..." + colorama.Fore.RESET)
     response = c.talk(s.strbases)
-    print(f"Response: {colorama.Fore.YELLOW + response + colorama.Fore.RESET}")
+    print(f"From server: \n{colorama.Fore.YELLOW + response + colorama.Fore.RESET}")
