@@ -7,10 +7,8 @@ EXERCISE = 7
 
 print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 
-# -- Parameters of the server to talk to
 IP = "127.0.0.1"
 PORT = 6123
-# -- Print the IP and PORTs
 c = Client(IP, PORT)
 print(c)
 exit = False

@@ -2,22 +2,37 @@ class Seq:
     """A class for representing sequences"""
 
     def __init__(self, strbases="NULL"):
-
-        # Initialize the sequence with the value
-        # passed as argument when creating the object
         self.strbases = strbases
         if strbases == "NULL":
             print("NULL seq created")
             exit = False
         else:
-            if not self.valid_sequence():
+            if not self.validate_sequence():
                 self.strbases = "ERROR"
                 print("INVALID seq!")
             else:
                 print("New sequence created!")
 
+    def __str__(self):
+        """Method called when the object is being printed"""
+
+        # -- We just return the string with the sequence
+        return self.strbases
+
+    def valid_filename(self):
+        exit = False
+        while not exit:
+            folder = "./sequences/"
+            filename = input("Enter a filename: ")
+            try:
+                f = open(folder + filename + ".txt", "r")
+                exit = True
+                return filename + ".txt"
+            except FileNotFoundError:
+                print("File was not found. Try again.")
+
     @staticmethod
-    def valid_sequence2(sequence):
+    def correct_sequence(sequence):
         valid = True
         i = 0
         while i < len(sequence):
@@ -27,8 +42,7 @@ class Seq:
             i += 1
         return valid
 
-
-    def valid_sequence(self):
+    def validate_sequence(self):
         valid = True
         i = 0
         while i < len(self.strbases):
@@ -38,39 +52,30 @@ class Seq:
             i += 1
         return valid
 
-
-
-    def __str__(self):
-        """Method called when the object is being printed"""
-
-        # -- We just return the string with the sequence
-        return self.strbases
-
-    def len(self):
+    def len_sequence(self):
         """Calculate the length of the sequence"""
-        if self.valid_sequence():
+        if self.validate_sequence():
             return len(self.strbases)
         else:
             return 0
 
-
-    def count_base(self):
-        count_a = 0
-        count_c = 0
-        count_g = 0
-        count_t = 0
+    def total_base(self):
+        base_a = 0
+        base_c = 0
+        base_g = 0
+        base_t = 0
         for i in self.strbases:
             if i == "A":
-                count_a += 1
+                base_a += 1
             elif i == "C":
-                count_c += 1
+                base_c += 1
             elif i == "G":
-                count_g += 1
+                base_g += 1
             elif i == "T":
-                count_t += 1
-        return count_a, count_c, count_g, count_t
+                base_t += 1
+        return base_a, base_c, base_g, base_t
 
-    def count(self):
+    def total_count_base(self):
         d = {"A": 0, "C": 0, "G": 0, "T": 0}
         for b in self.strbases:
             try:
@@ -79,16 +84,16 @@ class Seq:
                 return d
         return d
 
-    def reverse(self):
-        if self.valid_sequence():
+    def seq_reverse(self):
+        if self.validate_sequence():
             fragment = self.strbases
             reverse = fragment[::-1]
             return reverse
         else:
             return self.strbases
 
-    def complement(self):
-        if self.valid_sequence():
+    def seq_complement(self):
+        if self.validate_sequence():
             frag = self.strbases
             complementary = ""
             for i in frag:
@@ -104,34 +109,16 @@ class Seq:
         else:
             return self.strbases
 
-    def get_file(self):
-        exit = False
-        while not exit:
-            folder = "./sequences/"
-            self.filename = input("Enter the name of the file: ")
-            try:
-                filename = open(folder + self.filename + ".txt", "r")
-                exit = True
-                return filename
-            except FileNotFoundError:
-                if self.filename.lower() == "exit":
-                    print("The program is finished. You pressed exit.")
-                    filename = "none"
-                    exit = True
-                    return filename
-                else:
-                    print("File was not found")
-
-    def read_fasta2(self, filename):
+    def seq_read_fasta(self, filename):
         from pathlib import Path
-        file_contents = Path(filename + ".txt").read_text()
+        file_contents = Path(filename).read_text()
         lines = file_contents.splitlines()
         body = lines[1:]
         self.strbases = ""
         for line in body:
             self.strbases += line
 
-    def processing_genes(self, d):
+    def genes(self, d):
         highest_value = 0
         for k, v in d.items():
             if int(v) > highest_value:
@@ -139,8 +126,8 @@ class Seq:
                 base = k
         return base
 
-    def percentages(self, d):
-        new_dict = {"A": 0, "C": 0, "G": 0, "T": 0}
+    def bases_percent(self, d):
+        dict = {"A": 0, "C": 0, "G": 0, "T": 0}
         for k, v in d.items():
-            new_dict[k] = round((v / len(self.strbases)) * 100, 2)
-        return new_dict
+            dict[k] = round((v / len(self.strbases)) * 100, 2)
+        return dict
