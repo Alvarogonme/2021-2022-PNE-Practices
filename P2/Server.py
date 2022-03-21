@@ -1,8 +1,9 @@
 import socket
+from colorama import init, Fore
 
 # Configure the Server's IP and PORT
 PORT = 20500
-IP = "0.0.0.0"
+IP = "127.0.0.1"
 MAX_OPEN_REQUESTS = 5
 
 # Counting the number of connections

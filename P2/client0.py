@@ -13,6 +13,9 @@ class Client():
     def talk(self, msg):
         import socket
 
+        IP = "127.0.0.1"
+        PORT = 20500
+
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         s.connect((self.ip, self.port))
