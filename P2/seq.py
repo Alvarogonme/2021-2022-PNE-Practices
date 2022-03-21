@@ -31,17 +31,6 @@ class Seq:
             except FileNotFoundError:
                 print("File was not found. Try again.")
 
-    @staticmethod
-    def correct_sequence(sequence):
-        valid = True
-        i = 0
-        while i < len(sequence):
-            c = sequence[i]
-            if c != "A" and c != "C" and c != "G" and c != "T":
-                valid = False
-            i += 1
-        return valid
-
     def validate_sequence(self):
         valid = True
         i = 0
@@ -52,63 +41,6 @@ class Seq:
             i += 1
         return valid
 
-    def len_sequence(self):
-        """Calculate the length of the sequence"""
-        if self.validate_sequence():
-            return len(self.strbases)
-        else:
-            return 0
-
-    def total_base(self):
-        base_a = 0
-        base_c = 0
-        base_g = 0
-        base_t = 0
-        for i in self.strbases:
-            if i == "A":
-                base_a += 1
-            elif i == "C":
-                base_c += 1
-            elif i == "G":
-                base_g += 1
-            elif i == "T":
-                base_t += 1
-        return base_a, base_c, base_g, base_t
-
-    def total_count_base(self):
-        d = {"A": 0, "C": 0, "G": 0, "T": 0}
-        for b in self.strbases:
-            try:
-                d[b] += 1
-            except BaseException:
-                return d
-        return d
-
-    def seq_reverse(self):
-        if self.validate_sequence():
-            fragment = self.strbases
-            reverse = fragment[::-1]
-            return reverse
-        else:
-            return self.strbases
-
-    def seq_complement(self):
-        if self.validate_sequence():
-            frag = self.strbases
-            complementary = ""
-            for i in frag:
-                if i == "A":
-                    complementary += "T"
-                elif i == "T":
-                    complementary += "A"
-                elif i == "C":
-                    complementary += "G"
-                elif i == "G":
-                    complementary += "C"
-            return complementary
-        else:
-            return self.strbases
-
     def seq_read_fasta(self, filename):
         from pathlib import Path
         file_contents = Path(filename).read_text()
@@ -118,10 +50,3 @@ class Seq:
         for line in body:
             self.strbases += line
 
-    def genes(self, d):
-        highest_value = 0
-        for k, v in d.items():
-            if int(v) > highest_value:
-                highest_value = int(v)
-                base = k
-        return base

@@ -23,11 +23,11 @@ fg_4 = str(s)[41:50]
 
 list_fragments = [fg_0, fg_1, fg_2, fg_3, fg_4]
 
-print(f"Gene FRAT1: {colorama.Fore.BLUE + str(s) } to the server in fragments of 10 bases..." + colorama.Fore.RESET)
-response = c.talk(f"{seq} gene to server" + colorama.Fore.RESET)
+print(f"Gene FRAT1: {colorama.Fore.BLUE + str(s) }" + colorama.Fore.RESET)
+response = c.talk(f"Sending {seq} Gene to server, in fragments of 10 bases..." + colorama.Fore.RESET)
 
 i = 1
 for b in list_fragments:
     print(f"Fragment", str(i) + f":{colorama.Fore.BLUE + b}" + colorama.Fore.RESET)
-    response = c.talk("Sending Fragment" + str(i) + f": {b} gene to server" + colorama.Fore.RESET)
+    response = c.talk("Fragment" + str(i) + f": {b}" + colorama.Fore.RESET)
     i = i + 1

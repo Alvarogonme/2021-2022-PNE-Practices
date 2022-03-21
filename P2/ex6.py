@@ -32,7 +32,7 @@ for b in list_fragments:
         c = Client(IP, PORT)
         if times < 1:
             print(f"Gene FRAT1 {colorama.Fore.BLUE + str(s)}" + colorama.Fore.RESET)
-            response = c.talk(f"Sending {seq} gene to server" + colorama.Fore.RESET)
+            response = c.talk(f"Sending {seq} Gene to server, in fragments of 10 bases..." + colorama.Fore.RESET)
             times += 1
         print(f"Fragment", str(i) + f":{colorama.Fore.BLUE + b}" + colorama.Fore.RESET)
         response = c.talk("Fragment " + str(i) + f": {b}" + colorama.Fore.RESET)
