@@ -1,7 +1,7 @@
 import seq0
 
-FOLDER = "../Session-04/"
+print("-----| Exercise 3 |------")
 
 list_genes = ["U5", "FRAT1", "ADA", "FXN"]
 for l in list_genes:
-    print(len(seq0.seq_read_fasta(FOLDER + l + ".txt")))
+    print(l, "length --->", len(seq0.seq_read_fasta(l + ".txt")))
