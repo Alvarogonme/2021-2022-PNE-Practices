@@ -1,54 +1,34 @@
 from client0 import Client
-from seq1 import Seq
-
-
 PRACTICE = 3
 EXERCISE = 7
+Gen_txt = ["ADA", "FRAT1", "FXN", "RNU6_269P", "U5"]
+Bases_seq = "ACCTCCTCTCCAGCAATGCCAACCCCAGTCCAGGCCCCCATCCGCCCAGGATCTCGATCA"
+Commands = ["PING", "GET", "INFO", "COMP", "REV", "GENE"]
+print(f"-----| {PRACTICE}, {EXERCISE} |-----")
 
-print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
+CLIENT_IP = "127.0.0.1"
+CLIENT_PORT = 20500
 
-IP = "127.0.0.1"
-PORT = 6123
-c = Client(IP, PORT)
+c = Client(CLIENT_IP, CLIENT_PORT)
 print(c)
-exit = False
-while not exit:
-    option = input("What command do you want to test? ")
-    if option.lower() == "ping":
-        print("*Testing PING...")
-        response = c.talk("PING")
-        print(response)
-    elif option.lower() == "get":
-        print("*Testing GET...")
-        exit = False
-        while not exit:
-            option2 = input("Which sequence do you want to get? (or exit)")
-            if option2.lower() == "exit":
-                exit = True
-            else:
-                response = c.talk(f"GET {option2}")
-                print(response)
-    elif option.startswith("INFO"):
-        print("Testing INFO command...")
-        response = c.talk(option)
-        print(response)
-    elif option.startswith("COMP"):
-        print("Testing que COMP command...")
-        response = c.talk(option)
-        print(response)
-    elif option.startswith("REV"):
-        print("Testing the REV command...")
-        response = c.talk(option)
-        print(response)
-    elif option.lower() == "gene":
-        print("*Testing GENE...")
-        exit = False
-        while not exit:
-            option2 = input("Which gene do you want to get? (or exit)")
-            if option2.lower() == "exit":
-                exit = True
-            else:
-                response = c.talk(f"GENE {option2}")
-                print(response)
-    elif option.lower == "exit":
-        exit = True
+for function in Commands:
+    print(f"* Testing {function}...")
+    if function == "PING":
+          c.debug_talk(function)
+
+    elif function == "GET":
+        for n in range(5):
+            c.debug_talk(f"{function} {str(n)}")
+
+    elif function == "INFO":
+        c.debug_talk(f"{function} {Bases_seq}")
+
+    elif function == "COMP":
+         c.debug_talk(f"{function} {Bases_seq}")
+
+    elif function == "REV":
+        c.debug_talk(f"{function} {Bases_seq}")
+
+    elif function == "GENE":
+        for file in Gen_txt:
+            c.debug_talk(f"{function} {file}")

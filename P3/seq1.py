@@ -1,133 +1,79 @@
 class Seq:
-    """A class for representing sequences"""
 
-    def __init__(self, strbases="NULL"):
-        self.strbases = strbases
-        if strbases == "NULL":
-            print("NULL seq created")
-            exit = False
-        else:
-            if not self.validate_sequence():
-                self.strbases = "ERROR"
-                print("INVALID seq!")
+    BASES = ["A", "C", "G", "T"]
+    COMPLEMENTS = {"A": "T", "T": "A", "C": "G", "G": "C"}
+
+    @staticmethod #funcion o metodo que corresponde a toda la clase en general
+    def validate_sequence(bases):
+        valid = len(bases) != 0
+        i = 0
+        while valid and i < len(bases):
+            if bases[i] in Seq.BASES:
+                 i += 1
             else:
-                print("New sequence created!")
+                valid = False
+        return valid
+
+    def __init__(self, bases="NULL"):
+        if bases == "NULL":
+            self.bases = bases
+            print("NULL sequence created!")
+        elif Seq.validate_sequence(bases):
+            self.bases = bases
+            print("New sequence created!")
+        else:
+            self.bases = "ERROR"
+            print("INCORRECT sequence detected!")
 
     def __str__(self):
-        """Method called when the object is being printed"""
+        return self.bases
 
-        # -- We just return the string with the sequence
-        return self.strbases
+    def seq_read_fasta(self, file_name):
+        from pathlib import Path
 
-    def valid_filename(self):
-        exit = False
-        while not exit:
-            folder = "./sequences/"
-            filename = input("Enter a filename: ")
-            try:
-                f = open(folder + filename + ".txt", "r")
-                exit = True
-                return filename + ".txt"
-            except FileNotFoundError:
-                print("File was not found. Try again.")
+        file_cont = Path(file_name).read_text()
+        lines = file_cont.splitlines()
+        body = lines[1:]
+        self.bases = ""
+        for line in body:
+            self.bases += line
 
-    @staticmethod
-    def correct_sequence(sequence):
-        valid = True
-        i = 0
-        while i < len(sequence):
-            c = sequence[i]
-            if c != "A" and c != "C" and c != "G" and c != "T":
-                valid = False
-            i += 1
-        return valid
-
-    def validate_sequence(self):
-        valid = True
-        i = 0
-        while i < len(self.strbases):
-            c = self.strbases[i]
-            if c != "A" and c != "C" and c != "G" and c != "T":
-                valid = False
-            i += 1
-        return valid
-
-    def len_sequence(self):
-        """Calculate the length of the sequence"""
-        if self.validate_sequence():
-            return len(self.strbases)
-        else:
+    def seq_len(self):
+        if self.bases == "NULL" or self.bases == "ERROR":
             return 0
+        return len(self.bases)
 
-    def total_base(self):
-        base_a = 0
-        base_c = 0
-        base_g = 0
-        base_t = 0
-        for i in self.strbases:
-            if i == "A":
-                base_a += 1
-            elif i == "C":
-                base_c += 1
-            elif i == "G":
-                base_g += 1
-            elif i == "T":
-                base_t += 1
-        return base_a, base_c, base_g, base_t
+    def count(self, base):
+        if self.bases == "NULL" or self.bases == "ERROR":
+            return 0
+        return self.bases.count(base)
 
-    def total_count_base(self):
-        d = {"A": 0, "C": 0, "G": 0, "T": 0}
-        for b in self.strbases:
-            try:
-                d[b] += 1
-            except BaseException:
-                return d
-        return d
+    def base_count(self):
+        total = {}
+        for b in Seq.BASES:
+            total[b] = self.count(b)
+        return total
+
+    def base_info(self):
+        total = f"Sequence: {self.bases}\n"
+        total += f"Total length: {self.seq_len()}\n"
+
+        d = self.base_count()
+        for base, count in d.items():
+            total += f"{base}: {count} ({round((count * 100) / self.seq_len(),2)}%)\n"
+        return total
 
     def seq_reverse(self):
-        if self.validate_sequence():
-            fragment = self.strbases
-            reverse = fragment[::-1]
-            return reverse
-        else:
-            return self.strbases
+        if self.bases == "NULL" or self.bases == "ERROR":
+            return self.bases
+
+        return self.bases[::-1]
 
     def seq_complement(self):
-        if self.validate_sequence():
-            frag = self.strbases
-            complementary = ""
-            for i in frag:
-                if i == "A":
-                    complementary += "T"
-                elif i == "T":
-                    complementary += "A"
-                elif i == "C":
-                    complementary += "G"
-                elif i == "G":
-                    complementary += "C"
-            return complementary
-        else:
-            return self.strbases
+        if self.bases == "NULL" or self.bases == "ERROR":
+            return self.bases
 
-    def seq_read_fasta(self, filename):
-        from pathlib import Path
-        file_contents = Path(filename).read_text()
-        lines = file_contents.splitlines()
-        body = lines[1:]
-        self.strbases = ""
-        for line in body:
-            self.strbases += line
-
-    def genes(self, d):
-        highest_value = 0
-        for k, v in d.items():
-            if int(v) > highest_value:
-                highest_value = int(v)
-                base = k
-        return base
-
-    def bases_percent(self, d):
-        dict = {"A": 0, "C": 0, "G": 0, "T": 0}
-        for k, v in d.items():
-            dict[k] = round((v / len(self.strbases)) * 100, 2)
-        return dict
+        total = ""
+        for base in self.bases:
+            total += Seq.COMPLEMENTS[base]
+        return total
