@@ -28,7 +28,7 @@ try:
                 request = client_socket.recv(2048).decode("utf-8")
                 slices = request.split(" ")
                 function = slices[0]
-                termcolor.cprint(f"{function} command:", "green")
+                termcolor.cprint(f"{function} command:", "yellow")
                 response = " "
                 if function == "PING":
                     response = f"OK!\n"
