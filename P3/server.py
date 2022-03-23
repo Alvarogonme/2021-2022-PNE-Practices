@@ -49,6 +49,7 @@ try:
 
                     response = f"{seq.base_info()}"
                     client_socket.send(response.encode())
+                    print(response)
 
                 elif function == "COMP":
                     seq = slices[1]
