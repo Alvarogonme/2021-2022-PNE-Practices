@@ -27,7 +27,7 @@ class Client:
         s.connect((self.server_ip, self.server_port))
 
         print("To Server: ", end="")
-        termcolor.cprint(msg, "blue")
+        termcolor.cprint(msg, "yellow")
         msg_bytes = str.encode(msg)
         s.send(msg_bytes)
         response = s.recv(2048).decode("utf-8")
