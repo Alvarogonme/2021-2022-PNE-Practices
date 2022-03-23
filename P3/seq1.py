@@ -3,7 +3,7 @@ class Seq:
     BASES = ["A", "C", "G", "T"]
     COMPLEMENTS = {"A": "T", "T": "A", "C": "G", "G": "C"}
 
-    @staticmethod #funcion o metodo que corresponde a toda la clase en general
+    @staticmethod 
     def validate_sequence(bases):
         valid = len(bases) != 0
         i = 0
