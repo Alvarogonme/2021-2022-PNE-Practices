@@ -1,6 +1,6 @@
-import seq1 as s
+from Seq1 import Seq
 
-s = s.Seq("ACTGA")
-
-print("-----| Exercise 1 |------")
-print(f"Sequence 1:  (Length: {s.len_sequence()})  {s}")
+s = Seq1.Seq()
+s.seq_read_fasta("FRAT1")
+print(s)
+print(s.len())
