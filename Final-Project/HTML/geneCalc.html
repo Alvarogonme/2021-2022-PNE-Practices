@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GENE CALCULATIONS</title>
+</head>
+<h1>PERCENTAGES FROM THE GENE</h1>
+<body style="background-color: skyblue;">
+The length of the sequence is: {{context.length}}
+<br>
+{% for s in context.bases
+%}
+<p> The percentage of the base {{s}} that appears in {{context.seq}} is: {{context.bases[s][1]}}% </p>
+{% endfor %}
+<a href="http://localhost:20500/">Main page</a>
+</body>
+</html>

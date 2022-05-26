@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BROWSING HUMAN AND VERTEBRATES GENOME</title>
+</head>
+<body style="background-color: moccasin;">
+<h1>Browsing Human and Vertebrates genome</h1>
+<h2>BASIC Level Services</h2>
+<p>1)List of species in the genome database</p>
+    <form action="listSpecies" method="get">
+      Limit:
+      <input type="text" name="limit"><br><br>
+      <input type="submit" value="SEND"><br>
+    </form>
+<p>2)Information about the karyotype</p>
+    <form action="karyotype" method="get">
+      Select the species:
+      <input type="text" name="specie"><br><br>
+      <input type="submit" value="SEND"><br>
+    </form>
+<p>3)Chromosome length</p>
+        <form action="chromosomeLength" method="get">
+      Select the species:
+      <input type="text" name="specie"> <br><br>
+      Select a chromosome:
+      <input type="text" name="chromo"><br>
+      <input type="submit" value="SEND">
+        </form>
+<hr>
+<hr>
+<h2>MEDIUM Level Services</h2>
+
+<form action="geneSeq" method="get">
+      <p>4)Obtain a sequence from a gene:</p>
+      <select name="gene">
+          <option value="FRAT1">FRAT1</option>
+          <option value="ADA">ADA</option>
+          <option value="FXN">FXN</option>
+          <option value="RNU6_269P">RNU6_269P</option>
+          <option value="MIR633">MIR633</option>
+          <option value="TTTY4C">TTTY4C</option>
+          <option value="RBMY2YP">RBMY2YP</option>
+          <option value="FGFR3">FGFR3</option>
+          <option value="KDR">KDR</option>
+          <option value="ANK2">ANK2</option>
+
+      <input type="submit" value="SEND">
+       </form>
+
+<form action="geneInfo" method="get">
+      <p>5)Information from the gene:</p>
+      <select name="gene">
+        <option value="FRAT1">FRAT1</option>
+          <option value="ADA">ADA</option>
+          <option value="FXN">FXN</option>
+          <option value="RNU6_269P">RNU6_269P</option>
+          <option value="MIR633">MIR633</option>
+          <option value="TTTY4C">TTTY4C</option>
+          <option value="RBMY2YP">RBMY2YP</option>
+          <option value="FGFR3">FGFR3</option>
+          <option value="KDR">KDR</option>
+          <option value="ANK2">ANK2</option>
+
+      <input type="submit" value="SEND">
+       </form>
+
+<form action="geneCalc" method="get">
+      <p>6)Percentage and length from a base:</p>
+      <select name="gene">
+        <option value="FRAT1">FRAT1</option>
+          <option value="ADA">ADA</option>
+          <option value="FXN">FXN</option>
+          <option value="RNU6_269P">RNU6_269P</option>
+          <option value="MIR633">MIR633</option>
+          <option value="TTTY4C">TTTY4C</option>
+          <option value="RBMY2YP">RBMY2YP</option>
+          <option value="FGFR3">FGFR3</option>
+          <option value="KDR">KDR</option>
+          <option value="ANK2">ANK2</option>
+
+      <input type="submit" value="SEND">
+       </form>
+
+<p>7)Obtain the genes located in the "chromo":</p>
+      <form action="geneList" method="get">
+      Chromosome:
+      <input type="text" name="chromo"><br><br>
+      Start:
+      <input type="text" name="start"><br><br>
+      End:
+      <input type="text" name="end"><br><br>
+      <input type="submit" value="SEND"><br>
+    </form>
+</body>
+</html>
