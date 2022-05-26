@@ -1,6 +1,6 @@
 import json
 import termcolor
-from pathlib import Path    
+from pathlib import Path
 
 # -- Read the json file
 jsonstring = Path("people-1.json").read_text()

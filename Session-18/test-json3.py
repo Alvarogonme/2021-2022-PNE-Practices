@@ -3,7 +3,7 @@ import termcolor
 from pathlib import Path
 
 # -- Read the json file
-jsonstring = Path("people-2.json").read_text()
+jsonstring = Path("people-3.json").read_text()
 
 # Create the object person from the json string
 person = json.loads(jsonstring)
@@ -21,11 +21,16 @@ print(person['age'])
 # Get the phoneNumber list
 phoneNumbers = person['phoneNumber']
 
-# Print the number of elements int the list
+# Print the number of elements in the list
 termcolor.cprint("Phone numbers: ", 'green', end='')
 print(len(phoneNumbers))
 
-# Print all the phone numbers
+# Print all the numbers
 for i, num in enumerate(phoneNumbers):
-    termcolor.cprint("  Phone {}:".format(i), 'blue', end='')
-    print(num)
+    termcolor.cprint("  Phone {}:".format(i), 'blue')
+
+    # The element num contains 2 fields: number and type
+    termcolor.cprint("    Type: ", 'red', end='')
+    print(num['type'])
+    termcolor.cprint("    Number: ", 'red', end='')
+    print(num['number'])
