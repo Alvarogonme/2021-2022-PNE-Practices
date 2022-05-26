@@ -1,0 +1,6 @@
+Enter the ensembl page and search for the url we are doing the program.
+http://rest.ensembl.org/ in order to search for the endpoints we are looking for
+We use the end point that is in the web in order to connect the program with the web
+Once is done we have all the data from that endpoint in order to search the one we are looking for
+We create the program and the index.html and f.html connecting the three of them
+And finally in our web we just introduce the parameters, connects with ensembl ans gives the data in that position from the endpoint
